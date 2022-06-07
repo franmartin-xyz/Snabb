@@ -1,5 +1,6 @@
 class User{
-    construct(name,password,role,wallet,coins){
+    constructor(id,name,password,role,wallet,coins){
+        this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
@@ -7,70 +8,81 @@ class User{
         this.coins = coins;
     }
 };
-const user0 = new User("admin", "admin","admin",null,null);
-const users = ["admin"];
+
+if(!localStorage.getItem("users")){
+    const user0 = {
+        id : 0,
+        name : "admin",
+        password : "admin",
+        role : "admin",
+        wallet: null,
+        coins : null
+    };
+    const users = [user0];
+    localStorage.setItem("users",JSON.stringify(users));
+}else{
+    const users = localStorage.getItem("users");
+}
 
 function fromSelector(){
-   
     loginBox();
     registerBox();
 };
 
-function appendLoginBox(){
-    const loginForm = document.createElement("div");
-    loginForm.classList.add("loginBox");
-    loginForm.innerHTML=`
-        <form action="#!" id="form">
-        <h2>Ingrese a su cuenta</h2>
+// function appendLoginBox(){
+//     const loginForm = document.createElement("div");
+//     loginForm.classList.add("loginBox");
+//     loginForm.innerHTML=`
+//         <form action="#!" id="form">
+//         <h2>Ingrese a su cuenta</h2>
     
-        <div class="input-parent">
-        <label for="username">Username or Email</label>
-        <input type="text" id="username">
-        </div>
+//         <div class="input-parent">
+//         <label for="username">Username or Email</label>
+//         <input type="text" id="username">
+//         </div>
     
-        <div class="input-parent">
-        <label for="password">Password</label>
-        <input type="password" id="password">
-        </div>
+//         <div class="input-parent">
+//         <label for="password">Password</label>
+//         <input type="password" id="password">
+//         </div>
     
-        <button class="loginBtn"type="submit">Login</button>
-        </form>
-        `;
-        const main = document.querySelector(".main");
-        main.append(loginForm);
-        const loginBtn = document.querySelector(".loginBtn");
-            loginBtn.addEventListener("click",()=>{
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            let validate = users.find((user)=>{
-                return user === username && user === password;
-            });
-            if(!validate){
-                const main = document.querySelector("main");
-                let notFound = document.querySelector(".loginSpan");
-                if(!notFound){
-                    notFound = document.createElement("span");
-                    notFound.className="loginSpan";
-                }
-                notFound.setAttribute("style", "color: red;");
-                notFound.innerHTML = "No username or password found";
-                main.appendChild(notFound);
-            }else{
-                let success = document.querySelector(".loginSpan");
-                if(!success){
-                    success = document.createElement("span");
-                    success.className="loginSpan";
-                }
-                success.setAttribute("style", "color: green;");
-                success.innerHTML = "Successfully logged in";
-                const main = document.querySelector("main");
-                main.appendChild(success);
-                localStorage.setItem("currentUser","admin");
-            }
-            });
-}
+//         <button class="loginBtn"type="submit">Login</button>
+//         </form>
+//         `;
+//         const main = document.querySelector(".main");
+//         main.append(loginForm);
+//         const loginBtn = document.querySelector(".loginBtn");
+//             loginBtn.addEventListener("click",()=>{
+//             const username = document.getElementById("username").value;
+//             const password = document.getElementById("password").value;
+//             let validate = users.find((user)=>{
+//                 return user === username && user === password;
+//             });
+//             if(!validate){
+//                 const main = document.querySelector("main");
+//                 let notFound = document.querySelector(".loginSpan");
+//                 if(!notFound){
+//                     notFound = document.createElement("span");
+//                     notFound.className="loginSpan";
+//                 }
+//                 notFound.setAttribute("style", "color: red;");
+//                 notFound.innerHTML = "No username or password found";
+//                 main.appendChild(notFound);
+//             }else{
+//                 let success = document.querySelector(".loginSpan");
+//                 if(!success){
+//                     success = document.createElement("span");
+//                     success.className="loginSpan";
+//                 }
+//                 success.setAttribute("style", "color: green;");
+//                 success.innerHTML = "Successfully logged in";
+//                 const main = document.querySelector("main");
+//                 main.appendChild(success);
+//                 localStorage.setItem("currentUser","admin");
+//             }
+//             });
+// }
 function loginBox(){
-    appendLoginBox();
     const fromSelect = document.querySelector(".loginBoxbtn");
     fromSelect.addEventListener("click", ()=>{
         const loginBoxbtn = document.querySelector(".loginBox");
@@ -106,8 +118,9 @@ function loginBox(){
             loginBtn.addEventListener("click",()=>{
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
+            let users = JSON.parse(localStorage.getItem("users"));
             let validate = users.find((user)=>{
-                return user === username && user === password;
+                return user.name === username && user.password === password;
             });
             if(!validate){
                 const main = document.querySelector("main");
@@ -120,8 +133,9 @@ function loginBox(){
                 notFound.innerHTML = "No username or password found";
                 main.appendChild(notFound);
             }else{
+
                 let success = document.querySelector(".loginSpan");
-                success.className="loginSpan";
+                // success.className="loginSpan";
                 if(!success){
                     success = document.createElement("span");
                     success.className="loginSpan";
@@ -130,7 +144,6 @@ function loginBox(){
                 success.innerHTML = "Successfully logged in";
                 const main = document.querySelector("main");
                 main.appendChild(success);
-                localStorage.setItem("currentUser","admin");
             }
             });
             };
@@ -174,7 +187,14 @@ function registerBox(){
                 const username = document.getElementById("username").value;
                 const password = document.getElementById("password").value;
                 const password2 = document.getElementById("password2").value;
-                if (password === password2 & password !==""){
+                let users = JSON.parse(localStorage.getItem("users"));
+                let found = users.find((user)=>{
+                    return user.name === username;
+                });
+                if(!found){if (password === password2 & password !==""){
+                        let user = new User(users.length,username,password,"user",null,null);
+                        users.push(user);
+                        localStorage.setItem("users", JSON.stringify(users));
                         let success = document.querySelector(".registerSpan");
                         if(!success){
                             success = document.createElement("span");
@@ -184,7 +204,6 @@ function registerBox(){
                         success.innerHTML = `${username} successfully signed up`;
                         const main = document.querySelector("main");
                         main.appendChild(success);
-                        localStorage.setItem("currentUser","admin");
                 }else{
                     let noMatch = document.querySelector(".registerSpan");
                     if(!noMatch){
@@ -196,38 +215,19 @@ function registerBox(){
                     noMatch.setAttribute("style", "color: red;");
                     noMatch.innerHTML = "Passwords do not match";
                     main.appendChild(noMatch);
-                };
+                };}else{
+                    let noMatch = document.querySelector(".registerSpan");
+                    if(!noMatch){
+                        const noMatch = document.createElement("span");
+                        noMatch.className="registerSpan";
+                        const main = document.querySelector("main");
+                        main.appendChild(noMatch);
+                    }
+                    noMatch.setAttribute("style", "color: red;");
+                    noMatch.innerHTML = "Username already taken";
+                    main.appendChild(noMatch);
+                }
             });
         };
 });}   
 fromSelector();
-
-
-    
-
-
-
-/*
-<div class="loginBox">
-			<form action="#!" id="form">
-				<h2>Ingresa su username o mail</h2>
-			
-				<div class="input-parent">
-				<label for="username">Username or Email</label>
-				<input type="text" id="username">
-				</div>
-			
-                <h2>Ingresa su constraseña/h2>
-				<div class="input-parent">
-				<label for="password">Password</label>
-				<input type="password" id="password">
-				</div>
-                <h2>Repita su constraseña/h2>
-                <div class="input-parent">
-				<label for="password">Password</label>
-				<input type="password" id="password2">
-				</div>
-				<button class="registerBtn"type="submit">Register</button>
-			</form>
-		</div>
-*/
