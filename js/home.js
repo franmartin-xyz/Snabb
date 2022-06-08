@@ -88,11 +88,11 @@ function loginBox(){
         const loginBoxbtn = document.querySelector(".loginBox");
         if (!loginBoxbtn){
             const loginSpan = document.querySelector(".loginSpan");
-            if (loginSpan) { loginSpan.remove(loginSpan); };
+            loginSpan && loginSpan.remove(loginSpan);
             const registerSpan = document.querySelector(".registerSpan");
-            if (registerSpan){ registerSpan.remove(registerSpan); }
+            registerSpan && registerSpan.remove(registerSpan); 
             const registerBox = document.querySelector(".registerBox");
-            if (registerBox) { registerBox.remove(registerBox); }
+            registerBox && registerBox.remove(registerBox);
             const loginForm = document.createElement("div");
             loginForm.classList.add("loginBox");
             loginForm.innerHTML=`
@@ -155,9 +155,9 @@ function registerBox(){
     const registerBoxbtn = document.querySelector(".registerBox");
     if (!registerBoxbtn){
         const loginBox = document.querySelector(".loginBox");
-        if (loginBox){ loginBox.remove(loginBox); } 
+        loginBox &&loginBox.remove(loginBox);
         const loginSpan = document.querySelector(".loginSpan");
-        if (loginSpan){ loginSpan.remove(loginSpan); }
+        loginSpan && loginSpan.remove(loginSpan);
         const registerForm = document.createElement("div");
         registerForm.classList.add("registerBox");
         registerForm.innerHTML=`
@@ -191,7 +191,8 @@ function registerBox(){
                 let found = users.find((user)=>{
                     return user.name === username;
                 });
-                if(!found){if (password === password2 & password !==""){
+                if(!found){
+                    if (password === password2 & password !==""){
                         let user = new User(users.length,username,password,"user",null,null);
                         users.push(user);
                         localStorage.setItem("users", JSON.stringify(users));
@@ -204,21 +205,22 @@ function registerBox(){
                         success.innerHTML = `${username} successfully signed up`;
                         const main = document.querySelector("main");
                         main.appendChild(success);
+                    }else{
+                        let noMatch = document.querySelector(".registerSpan");
+                        if(!noMatch){
+                            noMatch = document.createElement("span");
+                            noMatch.className="registerSpan";
+                            const main = document.querySelector("main");
+                            main.appendChild(noMatch);
+                        }
+                        noMatch.setAttribute("style", "color: red;");
+                        noMatch.innerHTML = "Passwords do not match";
+                        main.appendChild(noMatch);
+                    };
                 }else{
                     let noMatch = document.querySelector(".registerSpan");
                     if(!noMatch){
-                        const noMatch = document.createElement("span");
-                        noMatch.className="registerSpan";
-                        const main = document.querySelector("main");
-                        main.appendChild(noMatch);
-                    }
-                    noMatch.setAttribute("style", "color: red;");
-                    noMatch.innerHTML = "Passwords do not match";
-                    main.appendChild(noMatch);
-                };}else{
-                    let noMatch = document.querySelector(".registerSpan");
-                    if(!noMatch){
-                        const noMatch = document.createElement("span");
+                        noMatch = document.createElement("span");
                         noMatch.className="registerSpan";
                         const main = document.querySelector("main");
                         main.appendChild(noMatch);

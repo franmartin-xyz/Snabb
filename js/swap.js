@@ -2,8 +2,7 @@ const ethereumButton = document.querySelector('.enableEthereumButton');
 const showAccount = document.querySelector('.walletConnect');
 
 if (typeof window.ethereum !== 'undefined') {
-    ethereumButton
-    .setAttribute("style", "background-color: red;");
+    ethereumButton.setAttribute("style", "background-color: red;");
     showAccount.setAttribute("style","display: none;");
 }
 
@@ -36,7 +35,6 @@ function listArray(array,text){
        nodotr.appendChild(nodotd)
        arrayList.appendChild(nodotr);
     };
-    
     walletConnect.appendChild(arrayList);
 }
 
@@ -56,9 +54,6 @@ async function getAccount() {
 
 const swapContainerArrowBtn = document.querySelector(".swapContainerArrowBtn");
 swapContainerArrowBtn.addEventListener("click", ()=>{
-    if(swapContainerArrowBtn.innerHTML === "↑"){ 
-        swapContainerArrowBtn.innerHTML = "↓";
-    }else{
-        swapContainerArrowBtn.innerHTML = "↑";
-    }
+    swapContainerArrowBtn.innerHTML === "↑" ?  
+        swapContainerArrowBtn.innerHTML = "↓" : swapContainerArrowBtn.innerHTML = "↑";
 })
