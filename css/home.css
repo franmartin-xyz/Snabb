@@ -10,10 +10,11 @@
     box-sizing: border-box;
 }
 main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column ;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 #form {
     width: max-content;
@@ -92,11 +93,6 @@ span {
     color:white;
     font-size:1rem;
 }
-.formSelect {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 450px) {
@@ -111,3 +107,29 @@ span {
         width: fit-content;
     }
 }
+.formSelect{
+    grid-area: 1 / 7 / 2 / 14;
+}
+.loginBoxbtn{
+    grid-area: 1 / 8 / 2 / 10;
+    width: 100%;
+}
+.registerBoxbtn{
+    grid-area: 1 / 11 / 2 / 13;
+    width: 100%;
+}
+.registerBox{
+    grid-area: 2 / 7 / 8 / 14;
+}
+.loginBox{
+    grid-area: 2 / 7 / 8 / 14;  
+}
+.userSidePanel li button{
+margin: 5px 5px 0px 0px;
+}
+.userSidePanel li { 
+    grid-area: 1 / 1 / 21 / 4; 
+    list-style-type: none;
+}
+.userDashboard { grid-area: 1 / 4 / 21 / 17; }
+.coinList { grid-area: 1 / 17 / 21 / 21; }

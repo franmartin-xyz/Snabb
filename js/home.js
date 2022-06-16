@@ -1,3 +1,4 @@
+import { dashboard } from "./userDashboard.js";
 class User{
     constructor(id,name,password,role,wallet,coins){
         this.id = id;
@@ -24,7 +25,7 @@ if(!localStorage.getItem("users")){
     const users = localStorage.getItem("users");
 }
 
-function fromSelector(){
+function formSelector(){
     loginBox();
     registerBox();
 };
@@ -144,6 +145,9 @@ function loginBox(){
                 success.innerHTML = "Successfully logged in";
                 const main = document.querySelector("main");
                 main.appendChild(success);
+                const id = users.map(user => user.name).indexOf(username);
+                localStorage.setItem("currentLoggedUser",`${id}`);
+                dashboard();
             }
             });
             };
@@ -232,4 +236,4 @@ function registerBox(){
             });
         };
 });}   
-fromSelector();
+formSelector();
