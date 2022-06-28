@@ -9,10 +9,16 @@
     font-family: inherit;
     box-sizing: border-box;
 }
-main{
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.mainUserDashboard{
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
+    grid-template-columns: 150px 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -107,29 +113,33 @@ span {
         width: fit-content;
     }
 }
-.formSelect{
-    grid-area: 1 / 7 / 2 / 14;
+.userSidePanel{
+    grid-area: 1 / 1 / 4 / 1 ;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
 }
-.loginBoxbtn{
-    grid-area: 1 / 8 / 2 / 10;
+.userSidePanel button{
+    margin: 5px 5px 0px 0px;
+}
+.coinList { 
+    grid-area: 1 / 3 / 4 / 4; 
+
+}
+.coinListFilters{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: sticky;
+    top:0;
+    background-color: #302d2d;
+}
+table{
+    color:white;
+    border:1px solid white;
     width: 100%;
 }
-.registerBoxbtn{
-    grid-area: 1 / 11 / 2 / 13;
-    width: 100%;
+th{
+    font-size: 12px;
 }
-.registerBox{
-    grid-area: 2 / 7 / 8 / 14;
-}
-.loginBox{
-    grid-area: 2 / 7 / 8 / 14;  
-}
-.userSidePanel li button{
-margin: 5px 5px 0px 0px;
-}
-.userSidePanel li { 
-    grid-area: 1 / 1 / 21 / 4; 
-    list-style-type: none;
-}
-.userDashboard { grid-area: 1 / 4 / 21 / 17; }
-.coinList { grid-area: 1 / 17 / 21 / 21; }
