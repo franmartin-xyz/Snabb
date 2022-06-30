@@ -21,6 +21,7 @@
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    gap: 5px;
 }
 #form {
     width: max-content;
@@ -116,7 +117,7 @@ span {
 .userSidePanel{
     grid-area: 1 / 1 / 4 / 1 ;
     position: sticky;
-    top: 0;
+    top: 0vh;
     height: 100vh;
     box-sizing: border-box;
 }
@@ -124,22 +125,63 @@ span {
     margin: 5px 5px 0px 0px;
 }
 .coinList { 
-    grid-area: 1 / 3 / 4 / 4; 
-
+    grid-area: 1 / 2 / 4 / 4; 
 }
 .coinListFilters{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     position: sticky;
-    top:0;
     background-color: #302d2d;
+    top:0vh;
 }
 table{
     color:white;
-    border:1px solid white;
+    /* border:1px solid white; */
     width: 100%;
 }
 th{
     font-size: 12px;
+}
+.mainUserInfoDashboard{
+    display: flex;
+    flex-direction: column;
+}
+.mainUserInfoDashboard img {
+    width: 25vh;
+    align-self: center;
+    border-radius: 2px;
+    border: solid 1px grey;
+}
+.mainUserInfoDashboard input{
+    width: 25hv;
+    align-self: center;
+    margin-top: 2px;
+}
+.mainUserInfoDashboard button{
+    width: 25vh;
+    align-self: center;
+    margin-top: 2px;
+}
+.coinListTable tbody{
+    position: sticky;
+    top:3vh;
+    background-color: #151414;
+}
+.coinListTable tr{
+    border-bottom: solid 1px gray;
+}
+.coinListTable button{
+    margin:3px 3px;
+}
+#portfolioPopUp{
+    display: none;
+    font-size: 10px;
+    color: green;
+    font-weight: 700;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 1;
+    position: absolute;
+    padding: 8px 0;
 }

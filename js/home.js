@@ -1,12 +1,10 @@
 import { dashboard } from "./userDashboard.js";
 class User{
-    constructor(id,name,password,role,wallet,coins){
+    constructor(id,name,password,role,){
         this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
-        this.wallet = wallet;
-        this.coins = coins;
     }
 };
 
@@ -16,8 +14,6 @@ if(!localStorage.getItem("users")){
         name : "admin",
         password : "admin",
         role : "admin",
-        wallet: null,
-        coins : null
     };
     const users = [user0];
     localStorage.setItem("users",JSON.stringify(users));
@@ -26,8 +22,10 @@ if(!localStorage.getItem("users")){
 }
 
 function formSelector(){
+    let loggedUser = localStorage.getItem("currentLoggedUser");
+    if (loggedUser>0){dashboard();}else{
     loginBox();
-    registerBox();
+    registerBox();};
 };
 
 // function appendLoginBox(){
@@ -197,7 +195,7 @@ function registerBox(){
                 });
                 if(!found){
                     if (password === password2 & password !==""){
-                        let user = new User(users.length,username,password,"user",null,null);
+                        let user = new User(users.length,username,password,"user");
                         users.push(user);
                         localStorage.setItem("users", JSON.stringify(users));
                         let success = document.querySelector(".registerSpan");
