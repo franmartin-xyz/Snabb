@@ -28,59 +28,7 @@ function formSelector(){
     registerBox();};
 };
 
-// function appendLoginBox(){
-//     const loginForm = document.createElement("div");
-//     loginForm.classList.add("loginBox");
-//     loginForm.innerHTML=`
-//         <form action="#!" id="form">
-//         <h2>Ingrese a su cuenta</h2>
-    
-//         <div class="input-parent">
-//         <label for="username">Username or Email</label>
-//         <input type="text" id="username">
-//         </div>
-    
-//         <div class="input-parent">
-//         <label for="password">Password</label>
-//         <input type="password" id="password">
-//         </div>
-    
-//         <button class="loginBtn"type="submit">Login</button>
-//         </form>
-//         `;
-//         const main = document.querySelector(".main");
-//         main.append(loginForm);
-//         const loginBtn = document.querySelector(".loginBtn");
-//             loginBtn.addEventListener("click",()=>{
-//             const username = document.getElementById("username").value;
-//             const password = document.getElementById("password").value;
-//             let validate = users.find((user)=>{
-//                 return user === username && user === password;
-//             });
-//             if(!validate){
-//                 const main = document.querySelector("main");
-//                 let notFound = document.querySelector(".loginSpan");
-//                 if(!notFound){
-//                     notFound = document.createElement("span");
-//                     notFound.className="loginSpan";
-//                 }
-//                 notFound.setAttribute("style", "color: red;");
-//                 notFound.innerHTML = "No username or password found";
-//                 main.appendChild(notFound);
-//             }else{
-//                 let success = document.querySelector(".loginSpan");
-//                 if(!success){
-//                     success = document.createElement("span");
-//                     success.className="loginSpan";
-//                 }
-//                 success.setAttribute("style", "color: green;");
-//                 success.innerHTML = "Successfully logged in";
-//                 const main = document.querySelector("main");
-//                 main.appendChild(success);
-//                 localStorage.setItem("currentUser","admin");
-//             }
-//             });
-// }
+
 function loginBox(){
     const fromSelect = document.querySelector(".loginBoxbtn");
     fromSelect.addEventListener("click", ()=>{

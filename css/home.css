@@ -23,6 +23,12 @@
     grid-row-gap: 0px;
     gap: 5px;
 }
+#loginBtns{
+    margin-top: 5px;
+    display: flex;
+    gap: 5px;
+    width: 50vh;
+}
 #form {
     width: max-content;
     margin: 40px auto;
@@ -172,7 +178,7 @@ th{
     border-bottom: solid 1px gray;
 }
 .coinListTable button{
-    margin:3px 3px;
+    margin:3px 0px 3px 0px;
 }
 #portfolioPopUp{
     display: none;
@@ -184,4 +190,10 @@ th{
     z-index: 1;
     position: absolute;
     padding: 8px 0;
+}
+#coinListSort{
+    width: 10%;
+}
+#coinListFilter{
+    width: 10%;
 }
