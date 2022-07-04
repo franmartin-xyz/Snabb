@@ -167,7 +167,7 @@ function Swap(){
                             amount=usersArr[userId].wallet[i].amount;
                         }
                     };
-                if(inputFromToken.value > 0 && inputFromToken.value <= amount) {
+                    if(inputFromToken.value > 0 && inputFromToken.value <= amount) {
                     usersArr[userId].wallet.find((o)=>{
                         if(o.coin === swapSelectFrom.value){
                             o.amount = o.amount - inputFromToken.value;
@@ -187,23 +187,37 @@ function Swap(){
                                             result = sellAmount / o.current_price;
                                         }
                                     })
-                            };};
-                            usersArr[userId].wallet.push({amount:result,coin:swapSelectTo.value})
-                            localStorage.setItem("users",JSON.stringify(usersArr));
-                            document. location. reload();
-                        }
-                    })
-            } else {
-                Swal.fire({
-                    title:'No tiene suficiente',
-                    color:"white",
-                    icon: 'error',
-                    position:"center",
-                    width:"500px",
-                    background: "rgb(66, 59, 59)",
-                    showConfirmButton: false,})
-            }
-            });
+                                };};
+                            let walletArr = usersArr[userId].wallet;
+                            let find = walletArr.find((o)=>{return o.coin === swapSelectTo.value})
+                            if(!find){ 
+                                usersArr[userId].wallet.push({amount:result,coin:swapSelectTo.value});
+                                localStorage.setItem("users",JSON.stringify(usersArr));
+                                document. location. reload();
+                            }else{
+                                walletArr.find((o)=>{
+                                    if(o.coin === swapSelectTo.value){
+                                        o.amount= o.amount + result;
+                                        usersArr[userId].wallet = walletArr;
+                                        localStorage.setItem("users",JSON.stringify(usersArr));
+                                        document. location. reload();
+                                    }
+                                })
+                            }   
+                            
+                            }
+                        })
+                    } else {
+                    Swal.fire({
+                        title:'No tiene suficiente',
+                        color:"white",
+                        icon: 'error',
+                        position:"center",
+                        width:"500px",
+                        background: "rgb(66, 59, 59)",
+                        showConfirmButton: false,})
+                    }
+                });
             }else{
                 Swal.fire({
                     title:'Su portafolio no está generado',

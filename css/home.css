@@ -221,7 +221,12 @@ span {
 .userSidePanel button{
     margin: 5px 5px 0px 0px;
 }
-
+#logOutBtn{
+    background-color: rgb(194, 29, 109);
+}
+#deleteAllData{
+    background-color: rgb(189, 36, 36);
+}
 .coinListFilters{
     display: flex;
     flex-direction: row;

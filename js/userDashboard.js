@@ -291,6 +291,9 @@ function userInfo(){let userInfoBtn = document.querySelector(".user-infoBtn");
             userArr[userId].userPofileImg = "https://m.media-amazon.com/images/I/51qwyXpJNHL._AC_SL1000_.jpg";
             localStorage.setItem("users",JSON.stringify(userArr));
         }; 
+            userId = localStorage.getItem("currentLoggedUser")
+            coins = localStorage.getItem("users");
+            userArr = JSON.parse(coins);
             let mainUserDashboard = document.querySelector(".mainUserDashboard");
             mainUserDashboard.remove(mainUserDashboard);
             let main = document.createElement("main");
@@ -299,6 +302,7 @@ function userInfo(){let userInfoBtn = document.querySelector(".user-infoBtn");
             <input type="text" id="changeProfilePic" autocomplete="off" placeholder="change profile image with url">
             <button id="changeProfilePicBtn" type="button">Save Profile Pic</button>
             <button id="logOutBtn" type="button">Log Out</button>
+            <button id="deleteAllData" type="button">Delete all data</button>
             <button id="backToMainDashboard" type="button">Back to main</button>`;
             document.body.appendChild(main);
             function userProfilePic(){
@@ -328,6 +332,16 @@ function userInfo(){let userInfoBtn = document.querySelector(".user-infoBtn");
             })
         };
         logOut();
+        function deleteAllData(){
+            let deleteAllData = document.getElementById("deleteAllData");
+            deleteAllData.addEventListener("click",()=>{
+                localStorage.removeItem("users");
+                localStorage.removeItem("currentLoggedUser");
+                localStorage.removeItem("coins");
+                document. location. reload();
+            })
+        }
+        deleteAllData();
     }) 
 };
 //user dashboard
