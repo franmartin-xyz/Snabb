@@ -15,14 +15,7 @@
     align-items: center;
     flex-direction: column;
 }
-.mainUserDashboard{
-    display: grid;
-    grid-template-columns: 150px 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    gap: 5px;
-}
+
 #loginBtns{
     margin-top: 5px;
     display: flex;
@@ -62,8 +55,6 @@ h2 {
 }
 label {
     display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
     color: #a4a4a4;
 }
 .input-parent input {
@@ -107,32 +98,130 @@ span {
     font-size:1rem;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 450px) {
-    #form{
-        width: 300px;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 450px) {
     #form{
         width: fit-content;
     }
+    .mainUserDashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .userSidePanel{   
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        box-sizing: content-box;
+    }
+    .userSidePanel button{
+        margin: 0px;
+    }
+    .coinListFilters{
+        justify-content: space-evenly;
+        gap: 5px;
+    }
+    .coinListFilters label{
+        display: none;
+    }
+}
+@media only screen and (min-width: 576px){
+    .mainUserDashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .userSidePanel{   
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        box-sizing: content-box;
+    }
+    .userSidePanel button{
+        margin: 0px;
+    }
+    .coinListFilters{
+        justify-content: space-evenly;
+        gap: 5px;
+    }
+    .coinListFilters label{
+        display: none;
+    }
+}
+@media only screen and (min-width: 768px){
+    .mainUserDashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .userSidePanel{   
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        box-sizing: content-box;
+    }
+    .userSidePanel button{
+        margin: 0px;
+    }
+    .coinListFilters{
+        justify-content: space-evenly;
+        gap: 5px;
+    }
+    .coinListFilters label{
+        display: none;
+    }
+}
+@media only screen and (min-width: 992px){
+    .mainUserDashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .coinListFilters label{
+        display:block;
+    }
+    .userSidePanel{   
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        box-sizing: content-box;
+    }
+    .userSidePanel button{
+        margin: 0px;
+    }
+    .coinListFilters{
+        justify-content: space-evenly;
+        gap: 5px;
+    }
+}
+@media only screen and (min-width: 1200px){
+    .mainUserDashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .userSidePanel{   
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        box-sizing: content-box;
+    }
+    .userSidePanel button{
+        margin: 0px;
+    }
+    .coinListFilters{
+        justify-content: space-evenly;
+        gap: 5px;
+    }
 }
 .userSidePanel{
-    grid-area: 1 / 1 / 4 / 1 ;
     position: sticky;
     top: 0vh;
-    height: 100vh;
     box-sizing: border-box;
 }
 .userSidePanel button{
     margin: 5px 5px 0px 0px;
 }
-.coinList { 
-    grid-area: 1 / 2 / 4 / 4; 
-}
+
 .coinListFilters{
     display: flex;
     flex-direction: row;
@@ -171,7 +260,7 @@ th{
 }
 .coinListTable tbody{
     position: sticky;
-    top:3vh;
+    top:4vh;
     background-color: #151414;
 }
 .coinListTable tr{
@@ -191,9 +280,4 @@ th{
     position: absolute;
     padding: 8px 0;
 }
-#coinListSort{
-    width: 10%;
-}
-#coinListFilter{
-    width: 10%;
-}
+

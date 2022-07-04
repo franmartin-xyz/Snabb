@@ -144,8 +144,6 @@ td{
         margin-bottom: 25px;
        }
 }
-
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .swapTitle{
     font-size: 3rem;
@@ -157,12 +155,6 @@ td{
    }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-   
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .swapTitle{
         width: 70%;
